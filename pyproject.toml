@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jyotish-api"
+version = "0.1.0"
+description = "Vedic astrology calculation API built on Swiss Ephemeris"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.30,<1",
+  "pydantic-settings>=2.4,<3",
+  "pyswisseph==2.10.3.2",
+  "timezonefinder>=6.5,<10",
+  "httpx>=0.27,<1",
+  "google-auth>=2.35,<3",
+  "google-cloud-firestore>=2.20,<3",
+  "requests>=2.32,<3",
+  "tzdata>=2024.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2",
+  "pytest-asyncio>=0.23",
+  "ruff>=0.5",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["B008"]

@@ -1,0 +1,1 @@
+"""Jyotish API application package."""
